@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+
+
+  <servlet>
+    <servlet-name>addcar</servlet-name>
+    <jsp-file>/addcar.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>addcar</servlet-name>
+    <url-pattern>/addcar.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>car</servlet-name>
+    <jsp-file>/car.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>car</servlet-name>
+    <url-pattern>/car.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RegServlet</servlet-name>
+    <servlet-class>servlet.RegServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RegServlet</servlet-name>
+    <url-pattern>/reg.do</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>servlet.AuthServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AuthServlet</servlet-name>
+    <url-pattern>/auth.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GetAllCarServlet</servlet-name>
+    <servlet-class>servlet.GetAllCarServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>GetAllCarServlet</servlet-name>
+    <url-pattern>/getAllCar.do</url-pattern>
+  </servlet-mapping>
+
+
+
+
+
+  <servlet>
+    <servlet-name>AddServlet</servlet-name>
+    <servlet-class>servlet.AddServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddServlet</servlet-name>
+    <url-pattern>/addcar.do</url-pattern>
+  </servlet-mapping>
+
+
+
+</web-app>
+        

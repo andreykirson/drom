@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS transmissions (
+ id serial PRIMARY KEY,
+ transmissionType VARCHAR NOT NULL
+);

@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS cars (
+ id serial PRIMARY KEY,
+ "year" int NOT NULL,
+ mileage int NOT NULL,
+ description VARCHAR NOT NULL,
+ vin int NOT NULL,
+ price int NOT NULL,
+ photo blob,
+ engine_id int not null references engines(id),
+ transmission_id int not null references transmissions(id)
+);

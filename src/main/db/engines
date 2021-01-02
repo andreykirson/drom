@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS engines (
+ id serial PRIMARY KEY,
+ power int NOT NULL,
+ capacity int NOT NULL,
+ engineType VARCHAR NOT NULL
+);
