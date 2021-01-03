@@ -1,10 +1,8 @@
 package servlet;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import model.Car;
-import org.json.simple.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import model.CarsUsers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import store.HbmStore;
@@ -14,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
+import java.util.List;
 
 public class GetAllCarServlet extends HttpServlet {
 
@@ -27,14 +25,29 @@ public class GetAllCarServlet extends HttpServlet {
         LOG.debug("GetAllServlet's doGET() called");
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        Collection<Car> cars = store.findAllCars();
+        List<CarsUsers> carsUsers = store.findAllCarsUsers();
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode record = mapper.createObjectNode();
+
+        for (CarsUsers cu:carsUsers) {
+            record.put("car" + cu.getCar().getId() + " ", mapper.createObjectNode()
+                    .put("brand", cu.getCar().getModel().getBrand().getName())
+                    .put("model", cu.getCar().getModel().getName())
+                    .put("year", cu.getCar().getYear())
+                    .put("price", cu.getCar().getPrice())
+                    .put("imagePath", cu.getCar().getImagePath())
+                    .set("user",  mapper.createObjectNode()
+                            .put("name", cu.getUser().getUsername())
+                            .put("phone", cu.getUser().getPhone()))
+            );
+        }
+
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        String json = new Gson().toJson(cars.toString());
-        writer.println(json);
+        writer.println(record);
         writer.flush();
         writer.close();
         LOG.debug("GetAllServlet finished");
-        LOG.debug("JSON {}", json);
+        LOG.debug("JSON {}", record);
     }
 
     @Override

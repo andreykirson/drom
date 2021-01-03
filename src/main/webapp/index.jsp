@@ -51,8 +51,8 @@
 </body>
 
 <script>
-    $(document).ready(function () {
-        console.log("Huraaaaa!!!!!!")
+
+       $(document).ready(function () {
         $.ajax({
             url: 'http://localhost:8080/drom/getAllCar.do',
             type: "GET",
@@ -60,23 +60,22 @@
             success: function(data) {
                 console.log("Start success function")
                 let jsonobj = JSON.parse(JSON.stringify(data));
-                console.log("Object : " + jsonobj);
+                console.log(jsonobj)
                 $.each(data, function(index) {
                         let car = {
                             model: jsonobj[index].model,
-                            username: jsonobj[index].username,
-                            userphone: jsonobj[index].userphone,
-                            description: jsonobj[index].description,
+                            brand: jsonobj[index].brand,
                             price: jsonobj[index].price,
-                            year: jsonobj[index].year
+                            year: jsonobj[index].year,
+                            user:jsonobj[index].user,
+                            imagePath:jsonobj[index].imagePath
                         };
-                    console.log("THE CAR IS" + car.year);
                         let row =
                             "<tr>" +
                             "<td>"
-                            + car.description + car.price + car.year + car.model + car.username + car.userphone +
+                            + car.brand + " " + car.price+ " " + car.year + " " + car.model + " " + car.user.name + " " + car.user.phone +
                             "</td>" +
-                            "<td>"+"</td>"+
+                            "<td>"+ "<img src="+ car.imagePath+">" +"</td>"+
                             "</tr>";
                         $("#cars-tbl tbody").append(row);
                     }

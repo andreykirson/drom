@@ -1,6 +1,8 @@
 package model;
 
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +20,11 @@ public class User {
     private String password;
     private String phone;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "history_user",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "car_id")})
-    private List<Car> cars = new ArrayList<Car>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<Car> cars = new ArrayList<Car>();
+
+    @OneToMany(mappedBy = "user")
+    private List<CarsUsers> carsUser = new ArrayList<>();
 
     public User() {
 
@@ -40,7 +42,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.cars = cars;
     }
 
     public User(int id, String username, String email, String password, String phone, List<Car> cars) {
@@ -49,7 +50,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.cars = cars;
+    }
+
+    public List<CarsUsers> getCarsUser() {
+        return carsUser;
+    }
+
+    public void setCarsUser(List<CarsUsers> carsUser) {
+        this.carsUser = carsUser;
     }
 
     public int getId() {
@@ -84,13 +92,13 @@ public class User {
         this.password = password;
     }
 
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
-    }
+//    public List<Car> getCars() {
+//        return cars;
+//    }
+//
+//    public void setCars(List<Car> cars) {
+//        this.cars = cars;
+//    }
 
     public String getPhone() {
         return phone;
@@ -113,13 +121,12 @@ public class User {
                 && Objects.equals(username, user.username)
                 && Objects.equals(email, user.email)
                 && Objects.equals(password, user.password)
-                && Objects.equals(phone, user.phone)
-                && Objects.equals(cars, user.cars);
+                && Objects.equals(phone, user.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, email, password, phone, cars);
+        return Objects.hash(id, username, email, password, phone);
     }
 
     @Override

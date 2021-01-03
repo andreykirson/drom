@@ -1,9 +1,6 @@
 package model;
 
-
 import javax.persistence.*;
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +20,8 @@ public class Car {
     private int mileage;
     private String description;
     private int price;
-    private byte[] image;;
+    private byte[] image;
+    private String imagePath;
 
     @ManyToOne
     @JoinColumn(name = "engine_id")
@@ -37,12 +35,14 @@ public class Car {
     @JoinColumn(name = "model_id")
     private Model model;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "history_user",
-            joinColumns = { @JoinColumn(name = "car_id") },
-            inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    private List<User> users = new ArrayList<User>();
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinTable(name = "history_user",
+//            joinColumns = { @JoinColumn(name = "car_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "user_id") })
+//    private List<User> users = new ArrayList<User>();
 
+    @OneToMany(mappedBy = "car")
+    private List<CarsUsers> carsUser = new ArrayList<>();
 
     public Car() {
     }
@@ -77,7 +77,7 @@ public class Car {
 
 
     public Car(long id, int vin, String color, int year, int mileage, String description, Engine engine,
-               Transmission transmission, Model model, List<User> users, int price, byte[] image) {
+               Transmission transmission, Model model, int price, byte[] image) {
         this.id = id;
         this.vin = vin;
         this.color = color;
@@ -87,13 +87,29 @@ public class Car {
         this.engine = engine;
         this.transmission = transmission;
         this.model = model;
-        this.users = users;
+//        this.users = users;
         this.price = price;
         this.image = image;
     }
 
-    public long getId() {
+    public List<CarsUsers> getCarsUser() {
+        return carsUser;
+    }
+
+    public void setCarsUser(List<CarsUsers> carsUser) {
+        this.carsUser = carsUser;
+    }
+
+    public Long getId() {
         return id;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public void setId(long id) {
@@ -164,13 +180,13 @@ public class Car {
         this.model = model;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+//    public List<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
 
     public int getPrice() {
         return price;
@@ -187,7 +203,6 @@ public class Car {
     public void setImage(byte[] image) {
         this.image = image;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -208,13 +223,12 @@ public class Car {
                 && Arrays.equals(image, car.image)
                 && Objects.equals(engine, car.engine)
                 && Objects.equals(transmission, car.transmission)
-                && Objects.equals(model, car.model)
-                && Objects.equals(users, car.users);
+                && Objects.equals(model, car.model);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, vin, color, year, mileage, description, price, engine, transmission, model, users);
+        int result = Objects.hash(id, vin, color, year, mileage, description, price, engine, transmission, model);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
@@ -230,9 +244,9 @@ public class Car {
                 ", mileage=" + mileage +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", engine=" + engine +
-                ", transmission=" + transmission +
-                ", model=" + model +
-                ", model=" + users + '}';
+                ", engine=" + engine.getEngineType() +
+                ", transmission=" + transmission.getTransmissionType() +
+                ", model=" + model.getName() +
+                ", model=" + model.getBrand() + '}';
     }
 }

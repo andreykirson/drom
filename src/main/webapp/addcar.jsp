@@ -99,7 +99,7 @@
 
     <div class="input">
         <label for="input-engine-capacity">
-            <span>Engine</span>
+            <span>Engine capacity</span>
         </label>
         <input type="text" name="input-engine-capacity" id="input-engine-capacity" />
     </div>

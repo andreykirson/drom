@@ -18,4 +18,6 @@ public interface Store {
     List<Brand> findAllBrands();
     List<Car> findAllCars();
     void updateUser(User user);
+    List<CarsUsers> findAllCarsUsers();
+    void addCarsUsers(CarsUsers carsUsers);
 }

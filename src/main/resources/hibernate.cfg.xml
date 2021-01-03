@@ -23,5 +23,6 @@
         <mapping class="model.Car" />
         <mapping class="model.Model" />
         <mapping class="model.Transmission" />
+        <mapping class="model.CarsUsers" />
     </session-factory>
 </hibernate-configuration>

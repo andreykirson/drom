@@ -3,9 +3,10 @@ CREATE TABLE IF NOT EXISTS cars (
  "year" int NOT NULL,
  mileage int NOT NULL,
  description VARCHAR NOT NULL,
+ imagePath VARCHAR NOT NULL,
  vin int NOT NULL,
  price int NOT NULL,
- photo blob,
+ photo bytea,
  engine_id int not null references engines(id),
  transmission_id int not null references transmissions(id)
 );

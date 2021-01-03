@@ -46,6 +46,14 @@ public class HbmStore implements Store {
         session.close();
     }
 
+    private void wrapperFour(BiConsumer<Session, CarsUsers> function, CarsUsers arg) {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        function.accept(session, arg);
+        session.getTransaction().commit();
+        session.close();
+    }
+
     private void wrapperThree(BiConsumer<Session, User> function, User arg) {
         Session session = sf.openSession();
         session.beginTransaction();
@@ -57,6 +65,11 @@ public class HbmStore implements Store {
     @Override
     public void addCar(Car car) {
         this.wrapperTwo(Session::save, car);
+    }
+
+    @Override
+    public void addCarsUsers(CarsUsers carsUsers) {
+        this.wrapperFour(Session::save, carsUsers);
     }
 
     @Override
@@ -120,7 +133,19 @@ public class HbmStore implements Store {
     @Override
     public List<Car> findAllCars() {
         return this.wrapperOne(
-                session -> session.createQuery("select distinct c from Car c join fetch c.users").list());
+                session -> session.createQuery("from Car c ").list());
+    }
+
+    @Override
+    public List<CarsUsers> findAllCarsUsers() {
+        return this.wrapperOne(
+                session -> session.createQuery("select distinct cu from CarsUsers cu "
+                        + "join fetch cu.user "
+                        + "join fetch cu.car c "
+                        + "join fetch c.transmission "
+                        + "join fetch c.engine "
+                        + "join fetch c.model m "
+                        + "join fetch m.brand").list());
     }
 
     @Override
