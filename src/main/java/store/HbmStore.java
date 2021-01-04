@@ -1,12 +1,15 @@
 package store;
 
 import model.*;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
+
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -46,7 +49,7 @@ public class HbmStore implements Store {
         session.close();
     }
 
-    private void wrapperFour(BiConsumer<Session, CarsUsers> function, CarsUsers arg) {
+    private void wrapperThree(BiConsumer<Session, User> function, User arg) {
         Session session = sf.openSession();
         session.beginTransaction();
         function.accept(session, arg);
@@ -54,7 +57,7 @@ public class HbmStore implements Store {
         session.close();
     }
 
-    private void wrapperThree(BiConsumer<Session, User> function, User arg) {
+    private void wrapperFour(BiConsumer<Session, CarsUsers> function, CarsUsers arg) {
         Session session = sf.openSession();
         session.beginTransaction();
         function.accept(session, arg);
@@ -109,6 +112,18 @@ public class HbmStore implements Store {
                         .setString("email", email)
                         .uniqueResult()
         );
+    }
+
+
+    @Override
+    public CarsUsers findCarsUsersById(int id) {
+        String qry = "SELECT * FROM cars_users LEFT JOIN cars ON cars.id = cars_users.car_id"
+                + " LEFT JOIN users ON users.id = cars_users.user_id"
+                + " WHERE cars_users.id = " + id + " ";
+
+        return (CarsUsers) this.wrapperOne(
+                session -> session.createSQLQuery(qry).addEntity(CarsUsers.class));
+
     }
 
     @Override

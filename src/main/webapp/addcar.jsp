@@ -1,4 +1,9 @@
+<%@ page import="model.CarsUsers" %>
+<%@ page import="store.Store" %>
+<%@ page import="store.HbmStore" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
+
   Created by IntelliJ IDEA.
   User: fruit
   Date: 12/26/2020
@@ -39,8 +44,20 @@
     </script>
 
 
+
 </head>
 <body>
+
+<%
+    String id = request.getParameter("id");
+    System.out.println("The ID is :" + id);
+    CarsUsers carsUsers = new CarsUsers();
+    if (id != null && !id.equals("null")) {
+        Store store = HbmStore.getInstance();
+        carsUsers = store.findCarsUsersById(Integer.valueOf(id));
+        System.out.println(carsUsers.getCar().getModel().getName());
+    }
+%>
 
 <div class="card-header">
     <% if (request.getSession().getAttribute("user") == null) { %>
@@ -53,6 +70,10 @@
     </li>
     <% } %>
 </div>
+
+
+
+
 
 
 <form action="<%=request.getContextPath()%>/addcar.do" method="post" enctype="multipart/form-data">

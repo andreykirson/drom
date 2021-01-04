@@ -1,8 +1,5 @@
 package model;
 
-
-import com.google.gson.annotations.Expose;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +17,6 @@ public class User {
     private String password;
     private String phone;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    private List<Car> cars = new ArrayList<Car>();
-
     @OneToMany(mappedBy = "user")
     private List<CarsUsers> carsUser = new ArrayList<>();
 
@@ -37,14 +31,7 @@ public class User {
         this.phone = phone;
     }
 
-    public User(String username, String email, String password, String phone, List<Car> cars) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-    }
-
-    public User(int id, String username, String email, String password, String phone, List<Car> cars) {
+    public User(int id, String username, String email, String password, String phone) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -92,14 +79,6 @@ public class User {
         this.password = password;
     }
 
-//    public List<Car> getCars() {
-//        return cars;
-//    }
-//
-//    public void setCars(List<Car> cars) {
-//        this.cars = cars;
-//    }
-
     public String getPhone() {
         return phone;
     }
@@ -131,9 +110,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+        return "User :" + username;
     }
 }

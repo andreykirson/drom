@@ -31,11 +31,14 @@ public class GetAllCarServlet extends HttpServlet {
 
         for (CarsUsers cu:carsUsers) {
             record.put("car" + cu.getCar().getId() + " ", mapper.createObjectNode()
+                    .put("id", cu.getId())
+                    .put("date", String.valueOf(cu.getCreatedTime()))
                     .put("brand", cu.getCar().getModel().getBrand().getName())
                     .put("model", cu.getCar().getModel().getName())
                     .put("year", cu.getCar().getYear())
                     .put("price", cu.getCar().getPrice())
                     .put("imagePath", cu.getCar().getImagePath())
+                    .put("status", cu.getSoldStatus())
                     .set("user",  mapper.createObjectNode()
                             .put("name", cu.getUser().getUsername())
                             .put("phone", cu.getUser().getPhone()))

@@ -20,4 +20,5 @@ public interface Store {
     void updateUser(User user);
     List<CarsUsers> findAllCarsUsers();
     void addCarsUsers(CarsUsers carsUsers);
+    CarsUsers findCarsUsersById(int id);
 }
