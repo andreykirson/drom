@@ -1,15 +1,12 @@
 package store;
 
 import model.*;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.query.Query;
-
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -41,23 +38,7 @@ public class HbmStore implements Store {
         }
     }
 
-    private void wrapperTwo(BiConsumer<Session, Car> function, Car arg) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        function.accept(session, arg);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    private void wrapperThree(BiConsumer<Session, User> function, User arg) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        function.accept(session, arg);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    private void wrapperFour(BiConsumer<Session, CarsUsers> function, CarsUsers arg) {
+    private <T> void wrapper(BiConsumer<Session, T> function, T arg) {
         Session session = sf.openSession();
         session.beginTransaction();
         function.accept(session, arg);
@@ -66,43 +47,79 @@ public class HbmStore implements Store {
     }
 
     @Override
+    public void updateBrand(Brand brand) {
+        this.wrapper(Session::update, brand);
+    }
+
+    @Override
+    public void updateModel(Model model) {
+        this.wrapper(Session::update, model);
+    }
+
+    @Override
+    public void updateCarsUsers(CarsUsers carsUsers) {
+        this.wrapper(Session::update, carsUsers);
+    }
+
+
+    @Override
     public void addCar(Car car) {
-        this.wrapperTwo(Session::save, car);
+        this.wrapper(Session::save, car);
     }
 
     @Override
     public void addCarsUsers(CarsUsers carsUsers) {
-        this.wrapperFour(Session::save, carsUsers);
+        this.wrapper(Session::save, carsUsers);
     }
 
     @Override
     public void addBrand(Brand brand) {
-        this.wrapperOne(session -> session.save(brand));
+        this.wrapper(Session::save, brand);
     }
 
     @Override
     public void addModel(Model model) {
-        this.wrapperOne(session -> session.save(model));
+        this.wrapper(Session::save, model);
     }
 
     @Override
     public void addTransmission(Transmission transmission) {
-        this.wrapperOne(session -> session.save(transmission));
+        this.wrapper(Session::save, transmission);
+    }
+
+    @Override
+    public void updateTransmission(Transmission transmission) {
+        this.wrapper(Session::update, transmission);
     }
 
     @Override
     public void addEngine(Engine engine) {
-       this.wrapperOne(session -> session.save(engine));
+       this.wrapper(Session::save, engine);
+    }
+
+    @Override
+    public void updateEngine(Engine engine) {
+        this.wrapper(Session::update, engine);
     }
 
     @Override
     public void delete(Car car) {
-        wrapperTwo(Session::delete, car);
+        wrapper(Session::delete, car);
+    }
+
+    @Override
+    public void deleteCarUser(CarsUsers carsUsers) {
+        wrapper(Session::delete, carsUsers);
     }
 
     @Override
     public void update(Car car) {
-        wrapperTwo(Session::update, car);
+        wrapper(Session::update, car);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        this.wrapper(Session::update, user);
     }
 
     @Override
@@ -114,16 +131,26 @@ public class HbmStore implements Store {
         );
     }
 
+    //    @Override
+//    public CarsUsers findCarsUsersById(int id) {
+//        String qry = "SELECT * FROM cars_users LEFT JOIN cars ON cars.id = cars_users.car_id"
+//                + " LEFT JOIN users ON users.id = cars_users.user_id"
+//                + " WHERE cars_users.id = " + id + " ";
+//        return (CarsUsers) this.wrapperOne(
+//                session -> session.createSQLQuery(qry).addEntity(CarsUsers.class).getSingleResult());
+//    }
 
     @Override
     public CarsUsers findCarsUsersById(int id) {
-        String qry = "SELECT * FROM cars_users LEFT JOIN cars ON cars.id = cars_users.car_id"
-                + " LEFT JOIN users ON users.id = cars_users.user_id"
-                + " WHERE cars_users.id = " + id + " ";
-
         return (CarsUsers) this.wrapperOne(
-                session -> session.createSQLQuery(qry).addEntity(CarsUsers.class));
-
+                session -> session.createQuery("select distinct cu from CarsUsers cu "
+                        + "join fetch cu.user "
+                        + "join fetch cu.car c "
+                        + "join fetch c.transmission "
+                        + "join fetch c.engine "
+                        + "join fetch c.model m "
+                        + "join fetch m.brand"
+                        + " where cu.id = :id ").setInteger("id", id).getSingleResult());
     }
 
     @Override
@@ -163,9 +190,17 @@ public class HbmStore implements Store {
                         + "join fetch m.brand").list());
     }
 
-    @Override
-    public void updateUser(User user) {
-        this.wrapperThree(Session::update, user);
-    }
 
+    @Override
+    public List<CarsUsers> findCarsByUserId(int id) {
+        return this.wrapperOne(
+                session -> session.createQuery("select distinct cu from CarsUsers cu "
+                        + "join fetch cu.user "
+                        + "join fetch cu.car c "
+                        + "join fetch c.transmission "
+                        + "join fetch c.engine "
+                        + "join fetch c.model m "
+                        + "join fetch m.brand"
+                        + " where cu.user.id = :id ").setInteger("id", id).list());
+    }
 }

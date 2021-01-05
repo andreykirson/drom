@@ -2,23 +2,9 @@
 <%@ page import="store.Store" %>
 <%@ page import="store.HbmStore" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
 
-  Created by IntelliJ IDEA.
-  User: fruit
-  Date: 12/26/2020
-  Time: 7:54 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%--<script>--%>
-<%--    function color() {--%>
-<%--        var colorin = document.getElementById("color-picker");--%>
-<%--        var color = colorin.value;--%>
-<%--        dd1.style.backgroundColor = color;--%>
-<%--    }--%>
-<%--</script>--%>
 
 <head>
     <title>Title</title>
@@ -48,17 +34,6 @@
 </head>
 <body>
 
-<%
-    String id = request.getParameter("id");
-    System.out.println("The ID is :" + id);
-    CarsUsers carsUsers = new CarsUsers();
-    if (id != null && !id.equals("null")) {
-        Store store = HbmStore.getInstance();
-        carsUsers = store.findCarsUsersById(Integer.valueOf(id));
-        System.out.println(carsUsers.getCar().getModel().getName());
-    }
-%>
-
 <div class="card-header">
     <% if (request.getSession().getAttribute("user") == null) { %>
     <li class="nav-item">
@@ -87,7 +62,7 @@
         <label for="input-vin">
             <span>Body VIN</span>
         </label>
-    <input type="text" name="input-vin" id="input-vin" />
+    <input type="text" name="input-vin" id="input-vin"  />
     </div>
 
     <div class="input">
@@ -101,14 +76,14 @@
         <label for="input-model">
             <span>Select model</span>
         </label>
-        <input type="text" name="input-model" id="input-model" />
+        <input type="text" name="input-model" id="input-model"  />
     </div>
 
     <div class="input">
         <label for="input-year">
             <span>Year</span>
         </label>
-    <input type="text" name="input-year" id="input-year" />
+    <input type="text" name="input-year" id="input-year"  />
     </div>
 
     <div class="input">
@@ -122,14 +97,14 @@
         <label for="input-engine-capacity">
             <span>Engine capacity</span>
         </label>
-        <input type="text" name="input-engine-capacity" id="input-engine-capacity" />
+        <input type="text" name="input-engine-capacity" id="input-engine-capacity"  />
     </div>
 
     <div class="input">
         <label for="input-engine-power">
-            <span>Engine</span>
+            <span>Engine Power</span>
         </label>
-        <input type="text" name="input-engine-power" id="input-engine-power" />
+        <input type="text" name="input-engine-power" id="input-engine-power"/>
     </div>
 
 
@@ -151,7 +126,7 @@
         <label for="color-picker">
             <span>Select color</span>
         </label>
-        <input id="color-picker" name="color-picker" type="color" value="#000000" onchange="color()">
+        <input id="color-picker" name="color-picker" type="color" >
     </div>
 
     <div class="input">
@@ -165,7 +140,7 @@
         <label for="input-description">
             <span>Description</span>
         </label>
-        <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here"></textarea>
+        <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here" ></textarea>
     </div>
     <button type="submit">Add car</button>
 

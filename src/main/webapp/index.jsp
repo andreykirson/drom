@@ -6,14 +6,19 @@
     <title>Title</title>
     <script src=https://code.jquery.com/jquery-3.1.1.min.js ></script>
     <script src="http://momentjs.com/downloads/moment.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/index.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 
 <ul class="nav">
     <li>
-        <a href="<%=request.getContextPath()%>/addcar.jsp">AddCar</a>
+        <a href="<%=request.getContextPath()%>/addcar.jsp">Add a Car</a>
     </li>
-
+    <li>
+        <a href="<%=request.getContextPath()%>/usercars.jsp">My ads</a>
+    </li>
     <li>
         <div class="card-header">
                 <% if (request.getSession().getAttribute("user") == null) { %>
@@ -69,7 +74,7 @@
                         let row =
                             "<tr>" +
                             "<td>" +
-                            "<a href='<%=request.getContextPath()%>/addcar.jsp?id="+ car.cuid + "' + >" +
+                            "<a href='<%=request.getContextPath()%>/car.jsp?id="+ car.cuid + "' + >" +
                             car.brand + " " + car.price+ " " + car.year + " " + car.model + " " + car.user.name + " " + car.user.phone +
                             "</td>" +
                             "<td>" + "<img src="+ car.imagePath+">" +"</td>"+
@@ -84,8 +89,6 @@
                 );
             }
         });
-
-
     })
 
 </script>

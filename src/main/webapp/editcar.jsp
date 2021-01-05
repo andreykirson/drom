@@ -8,7 +8,7 @@
 
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/switch.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -55,12 +55,15 @@
     <% } %>
 </div>
 
-<div name = "container">
+
+<form action="<%=request.getContextPath()%>/updateCarUser.do" method="post" enctype="multipart/form-data">
 
     <p>
         <input type="file" name = "add-photo" onchange="previewFile(this);" required>
     </p>
     <img id="previewImg" src="<%=carsUsers.getCar().getImagePath()%>" alt="Add photo" width="150" height="150">
+
+    <input type="text" hidden name="carUserId" id="carUserId" value="<%=carsUsers.getId()%>" />
 
     <div class="input">
         <label for="input-vin">
@@ -141,16 +144,48 @@
     </div>
 
     <div class="input">
+        <label for="input-status">
+            <span>Status</span>
+        </label>
+        <input type="text" name="input-status" id="input-status" value="<%=carsUsers.getSoldStatus()%>"/>
+    </div>
+
+    <section>
+        <div class="switch">
+            <input type="checkbox" id="status-switch" name = "status-switch" onchange = handleCheckbox(this) class='checkbx' checked = "<%=carsUsers.getSoldStatus()%>" >
+            <span class="selection"></span>
+            <label for="status-switch">Active</label>
+            <label for="status-switch">SOLD</label>
+        </div>
+    </section>
+
+
+    <div class="input">
         <label for="input-description">
             <span>Description</span>
         </label>
         <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here" ><%=carsUsers.getCar().getDescription()%></textarea>
     </div>
 
-</div>
+    <button type="submit">Update add</button>
+    <button type="button" id = "<%=carsUsers.getId()%>" >Delete add</button>
+
+</form>
 
 </body>
 
-
+<script>
+    $('#<%=carsUsers.getId()%>').click(function() {
+        let data = "<%=carsUsers.getId()%>";
+        console.log(data);
+        $.ajax({
+            url: 'http://localhost:8080/drom/deleteCarUser.do',
+            type: "POST",
+            dataType: "text",
+            data: data,
+            success: window.location = "http://localhost:8080/drom/usercars.jsp"
+        });
+    })
+</script>
 
 </html>

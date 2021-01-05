@@ -5,8 +5,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-
-
   <servlet>
     <servlet-name>addcar</servlet-name>
     <jsp-file>/addcar.jsp</jsp-file>
@@ -18,6 +16,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>editcar</servlet-name>
+    <jsp-file>/editcar.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>editcar</servlet-name>
+    <url-pattern>/editcar.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>car</servlet-name>
     <jsp-file>/car.jsp</jsp-file>
   </servlet>
@@ -26,6 +34,18 @@
     <servlet-name>car</servlet-name>
     <url-pattern>/car.jsp</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>usercars</servlet-name>
+    <jsp-file>/usercars.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>usercars</servlet-name>
+    <url-pattern>/usercars.jsp</url-pattern>
+  </servlet-mapping>
+
+
 
   <servlet>
     <servlet-name>RegServlet</servlet-name>
@@ -58,6 +78,52 @@
     <url-pattern>/getAllCar.do</url-pattern>
   </servlet-mapping>
 
+
+
+  <servlet>
+    <servlet-name>FindCarsByUserIdServlet</servlet-name>
+    <servlet-class>servlet.FindCarsByUserIdServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>FindCarsByUserIdServlet</servlet-name>
+    <url-pattern>/getCarsByUserId.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateCarUserServlet</servlet-name>
+    <servlet-class>servlet.UpdateCarUserServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateCarUserServlet</servlet-name>
+    <url-pattern>/updateCarUser.do</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>UpdateSoldStatusServlet</servlet-name>
+    <servlet-class>servlet.UpdateSoldStatusServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateSoldStatusServlet</servlet-name>
+    <url-pattern>/updateSoldStatus.do</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>DeleteCarUserServlet</servlet-name>
+    <servlet-class>servlet.UpdateSoldStatusServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DeleteCarUserServlet</servlet-name>
+    <url-pattern>/deleteCarUser.do</url-pattern>
+  </servlet-mapping>
+
+
+
   <servlet>
     <servlet-name>AddServlet</servlet-name>
     <servlet-class>servlet.AddServlet</servlet-class>
@@ -77,6 +143,7 @@
     <filter-name>AuthFilter</filter-name>
     <url-pattern>*.do</url-pattern>
     <url-pattern>/addcar.jsp</url-pattern>
+    <url-pattern>/usercars.jsp</url-pattern>
   </filter-mapping>
 
 </web-app>
