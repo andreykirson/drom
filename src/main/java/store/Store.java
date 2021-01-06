@@ -28,4 +28,8 @@ public interface Store {
     void updateCarsUsers(CarsUsers carsUsers);
     List<CarsUsers> findCarsByUserId(int id);
     CarsUsers findCarsUsersById(int id);
+    List<CarsUsers> getLastOfDay();
+    List<CarsUsers> getAllWithPhoto();
+    List<CarsUsers> getAllByBrand(String brand);
+
 }

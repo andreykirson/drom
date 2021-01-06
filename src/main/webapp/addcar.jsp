@@ -8,7 +8,7 @@
 
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/nav.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -34,22 +34,16 @@
 </head>
 <body>
 
-<div class="card-header">
-    <% if (request.getSession().getAttribute("user") == null) { %>
-    <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
-    </li>
-    <% } else { %>
-    <li class="nav-item">
-        <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> User:  <%=request.getSession().getAttribute("user")%> | Выйти</a>
-    </li>
-    <% } %>
+<div class="menu">
+    <ul>
+        <li><a href="<%=request.getContextPath()%>/index.jsp">All ads</a></li>
+        <% if (request.getSession().getAttribute("user") == null) { %> <li>
+        <a href="<%=request.getContextPath()%>/login.jsp">Login</a> </li>
+        <% } else { %>
+        <li>  <a href="<%=request.getContextPath()%>/login.jsp"> <%=request.getSession().getAttribute("user")%> | Logout</a>
+            <% } %></li>
+    </ul>
 </div>
-
-
-
-
-
 
 <form action="<%=request.getContextPath()%>/addcar.do" method="post" enctype="multipart/form-data">
 
@@ -143,6 +137,7 @@
         <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here" ></textarea>
     </div>
     <button type="submit">Add car</button>
+    <button type="reset">Reset</button>
 
 </form>
 

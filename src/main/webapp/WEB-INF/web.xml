@@ -122,8 +122,15 @@
     <url-pattern>/download</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>FilterByBrandServlet</servlet-name>
+    <servlet-class>servlet.FilterByBrandServlet</servlet-class>
+  </servlet>
 
-
+  <servlet-mapping>
+    <servlet-name>FilterByBrandServlet</servlet-name>
+    <url-pattern>/getCarByBrand.do</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>DeleteCarUserServlet</servlet-name>

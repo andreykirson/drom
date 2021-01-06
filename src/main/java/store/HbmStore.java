@@ -190,7 +190,6 @@ public class HbmStore implements Store {
                         + "join fetch m.brand").list());
     }
 
-
     @Override
     public List<CarsUsers> findCarsByUserId(int id) {
         return this.wrapperOne(
@@ -202,5 +201,49 @@ public class HbmStore implements Store {
                         + "join fetch c.model m "
                         + "join fetch m.brand"
                         + " where cu.user.id = :id ").setInteger("id", id).list());
+    }
+
+    @Override
+    public List<CarsUsers> getAllByBrand(String brand) {
+        return this.wrapperOne(
+                session -> session.createQuery("select distinct cu from CarsUsers cu "
+                        + "join fetch cu.user "
+                        + "join fetch cu.car c "
+                        + "join fetch c.transmission "
+                        + "join fetch c.engine "
+                        + "join fetch c.model m "
+                        + "join fetch m.brand"
+                        + " where m.brand.name = :brand ").setString("brand", brand).list());
+
+    }
+
+   @Override
+    public List<CarsUsers> getLastOfDay() {
+        return this.wrapperOne(
+                session -> session.createQuery("select distinct cu from CarsUsers cu "
+                        + "join fetch cu.user "
+                        + "join fetch cu.car c "
+                        + "join fetch c.transmission "
+                        + "join fetch c.engine "
+                        + "join fetch c.model m "
+                        + "join fetch m.brand"
+                        + " where cu.createdTime = current_date").list());
+    }
+
+    @Override
+    public List<CarsUsers> getAllWithPhoto() {
+        return this.wrapperOne(
+                session -> session.createQuery("select distinct cu from CarsUsers cu "
+                        + "join fetch cu.user "
+                        + "join fetch cu.car c "
+                        + "join fetch c.transmission "
+                        + "join fetch c.engine "
+                        + "join fetch c.model m "
+                        + "join fetch m.brand"
+                        + " where c.imagepath is not null").list());
+
+
+
+
     }
 }

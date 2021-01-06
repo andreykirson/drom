@@ -5,29 +5,23 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/switch.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/nav.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 
-<ul class="nav">
-    <li>
-        <a href="<%=request.getContextPath()%>/addcar.jsp">AddCar</a>
-    </li>
-
-    <li>
-        <div class="card-header">
-            <% if (request.getSession().getAttribute("user") == null) { %>
-            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
+    <div class="menu">
+        <ul>
+            <li><a href="<%=request.getContextPath()%>/addcar.jsp">Add a Car</a></li>
+            <% if (request.getSession().getAttribute("user") == null) { %> <li>
+            <a href="<%=request.getContextPath()%>/login.jsp">Войти</a> </li>
             <% } else { %>
-            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <%=request.getSession().getAttribute("user")%> | Выйти</a>
-            <% } %>
-        </div>
-    </li>
-
-</ul>
+            <li>  <a href="<%=request.getContextPath()%>/login.jsp"> <%=request.getSession().getAttribute("user")%> | Выйти</a>
+                <% } %></li>
+        </ul>
+     </div>
 
 <table id="cars-tbl" name = "cars-tbl">
     <thead>
