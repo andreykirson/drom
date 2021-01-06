@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import model.CarsUsers;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class JSONBuilder {
@@ -11,11 +12,15 @@ public class JSONBuilder {
     private ObjectMapper mapper = new ObjectMapper();
     private ObjectNode record = mapper.createObjectNode();
 
+
    public  ObjectNode buildCarsUsersJSON(List<CarsUsers> carsUsers) {
+
+       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         for (CarsUsers cu : carsUsers) {
             record.put("car" + cu.getCar().getId() + " ", mapper.createObjectNode()
                     .put("id", cu.getId())
-                    .put("date", String.valueOf(cu.getCreatedTime()))
+                    .put("date", format.format(cu.getCreatedTime()))
                     .put("brand", cu.getCar().getModel().getBrand().getName())
                     .put("model", cu.getCar().getModel().getName())
                     .put("year", cu.getCar().getYear())

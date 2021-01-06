@@ -81,12 +81,10 @@
                                 "<div class='switch'>" +
                                     "<input type='checkbox' id='status-switch:" + car.cuid + "' name = 'status-switch' onchange = handleCheckbox(this) class='checkbx' checked = '" + car.status + "' >" +
                                     "<span class='selection'></span>" +
-                                    "<label for='status-switch:" + car.cuid + "'>Active</label>" +
                                     "<label for='status-switch:" + car.cuid + "'>SOLD</label>" +
+                                    "<label for='status-switch:" + car.cuid + "'>Active</label>" +
                                "</div>" +
                             "</section>" +
-
-                            "<span id='st-" + car.cuid + "'>" + car.status + "</span>" +
                             "</td>"+
                             "<td>" +
                             "<a href='<%=request.getContextPath()%>/editcar.jsp?id="+ car.cuid + "' + >" + "Edit ad" +

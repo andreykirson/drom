@@ -113,8 +113,21 @@
 
 
   <servlet>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>servlet.DownloadServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+
+
+
+
+  <servlet>
     <servlet-name>DeleteCarUserServlet</servlet-name>
-    <servlet-class>servlet.UpdateSoldStatusServlet</servlet-class>
+    <servlet-class>servlet.DeleteCarUserServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

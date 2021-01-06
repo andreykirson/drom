@@ -77,13 +77,13 @@
                             "<a href='<%=request.getContextPath()%>/car.jsp?id="+ car.cuid + "' + >" +
                             car.brand + " " + car.price+ " " + car.year + " " + car.model + " " + car.user.name + " " + car.user.phone +
                             "</td>" +
-                            "<td>" + "<img src="+ car.imagePath+">" +"</td>"+
+                            "<td>" + "<img src=/download?name="+ car.imagePath+">" +"</td>"+
                             "<td>" + "<span>" + car.date  + "</span>" +"</td>"+
                             "<td>" + "<span id='st-" + car.cuid + "'>" + car.status + "</span>" + "</td>"+
                             "</tr>";
                         $("#cars-tbl tbody").append(row);
 
-                    car.status === false ? $("#st-" + car.cuid).prop("innerHTML", "Sold") : 'Active';
+                    car.status === false ? $("#st-" + car.cuid).prop("innerHTML", 'Active' ) : 'Sold';
                     console.log(car.status)
                     }
                 );

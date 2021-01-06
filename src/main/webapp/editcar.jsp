@@ -143,19 +143,12 @@
         <input type="text" name="input-price" id="input-price" value="<%=carsUsers.getCar().getPrice()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-status">
-            <span>Status</span>
-        </label>
-        <input type="text" name="input-status" id="input-status" value="<%=carsUsers.getSoldStatus()%>"/>
-    </div>
-
     <section>
         <div class="switch">
             <input type="checkbox" id="status-switch" name = "status-switch" onchange = handleCheckbox(this) class='checkbx' checked = "<%=carsUsers.getSoldStatus()%>" >
             <span class="selection"></span>
-            <label for="status-switch">Active</label>
             <label for="status-switch">SOLD</label>
+            <label for="status-switch">Active</label>
         </div>
     </section>
 
@@ -168,16 +161,16 @@
     </div>
 
     <button type="submit">Update add</button>
-    <button type="button" id = "<%=carsUsers.getId()%>" >Delete add</button>
+    <button type="button" id = "<%=carsUsers.getId()%>" onClick="fn_click(this.id)" class="delete-btn">Delete add</button>
 
 </form>
 
 </body>
 
 <script>
-    $('#<%=carsUsers.getId()%>').click(function() {
-        let data = "<%=carsUsers.getId()%>";
-        console.log(data);
+    function fn_click(id) {
+        let data = id;
+        console.log("Delete :" + data);
         $.ajax({
             url: 'http://localhost:8080/drom/deleteCarUser.do',
             type: "POST",
@@ -185,7 +178,7 @@
             data: data,
             success: window.location = "http://localhost:8080/drom/usercars.jsp"
         });
-    })
+    }
 </script>
 
 </html>

@@ -1,12 +1,12 @@
 package servlet;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import model.CarsUsers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import store.HbmStore;
 import store.Store;
+import util.JSONBuilder;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,25 +26,7 @@ public class GetAllCarServlet extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         List<CarsUsers> carsUsers = store.findAllCarsUsers();
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode record = mapper.createObjectNode();
-
-        for (CarsUsers cu:carsUsers) {
-            record.put("car" + cu.getCar().getId() + " ", mapper.createObjectNode()
-                    .put("id", cu.getId())
-                    .put("date", String.valueOf(cu.getCreatedTime()))
-                    .put("brand", cu.getCar().getModel().getBrand().getName())
-                    .put("model", cu.getCar().getModel().getName())
-                    .put("year", cu.getCar().getYear())
-                    .put("price", cu.getCar().getPrice())
-                    .put("imagePath", cu.getCar().getImagePath())
-                    .put("status", cu.getSoldStatus())
-                    .set("user",  mapper.createObjectNode()
-                            .put("name", cu.getUser().getUsername())
-                            .put("phone", cu.getUser().getPhone()))
-            );
-        }
-
+        ObjectNode record = new JSONBuilder().buildCarsUsersJSON(carsUsers);
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.println(record);
         writer.flush();
