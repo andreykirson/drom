@@ -1,23 +1,30 @@
-body{
-    background: #58D8E8;
-    font-family: lato;
+.menu {
+    background-color: lightgrey;
+    overflow: hidden;
 }
 
-.menu{
-    text-align:center;
-    margin-top:50px;
+.menu li a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
-li{
-    padding-right:40px;
-    display:inline-block;
 
+.menu li a:hover {
+    background-color: green;
+    color: black;
 }
-a{
-    color:white;
-    padding:10px;
-    text-decoration:none;
+
+.menu li a.active {
+    background-color: #4CAF50;
 }
-a:hover{
-    border-top:3px solid white;
-    color:black;
+
+#cars-tbl {
+    width:100%;
+    table-layout: fixed;
+}
+
+#cars-tbl header{
+    background-color: rgba(255,255,255,0.3);
 }

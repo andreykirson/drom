@@ -36,14 +36,19 @@ public class FilterByBrandServlet extends HttpServlet {
             while ((line = reader.readLine()) != null) {
                 fullLine.append(line);
             }
-            List<CarsUsers> carsUsers = store.getAllByBrand(fullLine.toString());
+            List<CarsUsers> carsUsers;
+            if (fullLine.toString().equals("All")) {
+                carsUsers = store.findAllCarsUsers();
+            } else {
+                carsUsers = store.getAllByBrand(fullLine.toString());
+            }
             ObjectNode record = new JSONBuilder().buildCarsUsersJSON(carsUsers);
             PrintWriter writer = new PrintWriter(resp.getOutputStream());
             writer.println(record);
             writer.flush();
             writer.close();
             LOG.debug("FilterByBrandServlet finished");
-            LOG.debug("The selected brand is {}, the line is {}", fullLine.toString(), line);
+            LOG.debug("The selected brand is {}", fullLine.toString());
             LOG.debug("JSON {}", record);
         }
     }

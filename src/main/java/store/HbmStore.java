@@ -241,9 +241,5 @@ public class HbmStore implements Store {
                         + "join fetch c.model m "
                         + "join fetch m.brand"
                         + " where c.imagepath is not null").list());
-
-
-
-
     }
 }

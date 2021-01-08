@@ -45,10 +45,10 @@
     </ul>
 </div>
 
-<form action="<%=request.getContextPath()%>/addcar.do" method="post" enctype="multipart/form-data">
+<form action="<%=request.getContextPath()%>/addcar.do" method="post" enctype="multipart/form-data" novalidate>
 
     <p>
-        <input type="file" name = "add-photo" onchange="previewFile(this);" required>
+        <input type="file" name = "add-photo" novalidate="novalidate" onchange="previewFile(this);" required>
     </p>
     <img id="previewImg" src="" alt="Add photo" width="150" height="150">
 

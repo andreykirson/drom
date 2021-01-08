@@ -142,7 +142,15 @@
     <url-pattern>/deleteCarUser.do</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>GetCarUserLastOfDayServlet</servlet-name>
+    <servlet-class>servlet.GetCarUserLastOfDayServlet</servlet-class>
+  </servlet>
 
+  <servlet-mapping>
+    <servlet-name>GetCarUserLastOfDayServlet</servlet-name>
+    <url-pattern>/filterByLastOfDay.do</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>AddServlet</servlet-name>
@@ -152,6 +160,16 @@
   <servlet-mapping>
     <servlet-name>AddServlet</servlet-name>
     <url-pattern>/addcar.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>GetAllWithPhotoServlet</servlet-name>
+    <servlet-class>servlet.GetAllWithPhotoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>GetAllWithPhotoServlet</servlet-name>
+    <url-pattern>/getCarWithPhoto.do</url-pattern>
   </servlet-mapping>
 
   <filter>

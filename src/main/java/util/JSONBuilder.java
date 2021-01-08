@@ -3,7 +3,6 @@ package util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import model.CarsUsers;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -11,7 +10,6 @@ public class JSONBuilder {
 
     private ObjectMapper mapper = new ObjectMapper();
     private ObjectNode record = mapper.createObjectNode();
-
 
    public  ObjectNode buildCarsUsersJSON(List<CarsUsers> carsUsers) {
 
@@ -34,5 +32,4 @@ public class JSONBuilder {
         }
        return record;
     }
-
 }

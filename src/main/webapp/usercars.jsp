@@ -14,6 +14,7 @@
 
     <div class="menu">
         <ul>
+            <li><a href="<%=request.getContextPath()%>/index.jsp">Main</a></li>
             <li><a href="<%=request.getContextPath()%>/addcar.jsp">Add a Car</a></li>
             <% if (request.getSession().getAttribute("user") == null) { %> <li>
             <a href="<%=request.getContextPath()%>/login.jsp">Войти</a> </li>
@@ -73,7 +74,7 @@
                             "<td>" +
                             "<section>" +
                                 "<div class='switch'>" +
-                                    "<input type='checkbox' id='status-switch:" + car.cuid + "' name = 'status-switch' onchange = handleCheckbox(this) class='checkbx' checked = '" + car.status + "' >" +
+                                    "<input type='checkbox' id='status-switch:" + car.cuid + "' name = 'status-switch' onchange = handleCheckbox(this) class='checkbx' >" +
                                     "<span class='selection'></span>" +
                                     "<label for='status-switch:" + car.cuid + "'>SOLD</label>" +
                                     "<label for='status-switch:" + car.cuid + "'>Active</label>" +
@@ -86,7 +87,11 @@
                             "</tr>";
                         $("#cars-tbl tbody").append(row);
 
-                        car.status === false ? $("#status-switch:" + car.cuid).prop("checked", false) : '';
+                       if (car.status === true) {
+                            document.getElementById('status-switch:' + car.cuid).checked = true;
+                    } else {
+                           document.getElementById('status-switch:' + car.cuid).checked = false;
+                       }
                     }
                 );
             }

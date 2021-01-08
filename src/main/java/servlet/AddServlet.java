@@ -48,13 +48,14 @@ public class AddServlet extends HttpServlet {
                 folder.mkdir();
             }
             for (FileItem item : items) {
-                if (!item.isFormField()) {
+                if (!item.isFormField() && !item.getName().equals("")) {
+                    LOG.debug("Item is : {}", item.getString());
                     File file = new File(folder + File.separator + item.getName());
                     LOG.debug("Folder of images is : {}", folder.getAbsolutePath());
-                    imagePath = file.getName();
-                    try (FileOutputStream out = new FileOutputStream(file)) {
-                        out.write(item.getInputStream().readAllBytes());
-                    }
+                        imagePath = file.getName();
+                        try (FileOutputStream out = new FileOutputStream(file)) {
+                            out.write(item.getInputStream().readAllBytes());
+                        }
                 } else {
                    mapFormValue.put(item.getFieldName(), item.getString());
                 }
