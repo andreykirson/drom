@@ -4,9 +4,12 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/table.css"/>
     <script src=https://code.jquery.com/jquery-3.1.1.min.js ></script>
     <script src="http://momentjs.com/downloads/moment.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/nav.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/table.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -143,9 +146,9 @@ function parseData(data) {
             "<tr>" +
             "<td>" +
             "<a class = 'link' href='<%=request.getContextPath()%>/car.jsp?id="+ car.cuid + "' + >" +
-            car.brand + " " + car.price+ " " + car.year + " " + car.model + " " + car.user.name + " " + car.user.phone +
+            car.brand + " "+ car.model + " " + car.year + " year "  + car.price+ " $ " +
             "</td>" +
-            "<td>" + "<img src=/download?name="+ car.imagePath+">" +"</td>"+
+            "<td>" + "<img width=200px height=200px alt=\"Add the photo\" src=<%=request.getContextPath()%>/download?name="+ car.imagePath  + ">"  +"</td>" +
             "<td>" + "<span>" + car.date  + "</span>" +"</td>"+
             "<td>" + "<span id='st-"+car.cuid+"'>" + car.status + "</span>" + "</td>"+
             "</tr>";

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/switch.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script>
@@ -61,103 +60,79 @@
     <p>
         <input type="file" name = "add-photo" onchange="previewFile(this);" required>
     </p>
-    <img id="previewImg" src="<%=carsUsers.getCar().getImagePath()%>" alt="Add photo" width="150" height="150">
+
+
+    <img id="previewImg" src=<%=request.getContextPath()%>/download?name=<%=carsUsers.getCar().getImagePath()%> alt="Add photo" width="150" height="150">
 
     <input type="text" hidden name="carUserId" id="carUserId" value="<%=carsUsers.getId()%>" />
 
-    <div class="input">
-        <label for="input-vin">
-            <span>Body VIN</span>
-        </label>
-        <input type="text" name="input-vin" id="input-vin" value="<%=carsUsers.getCar().getVin()%>" />
+    <div class="input-group-prepend">
+        <div class="input-group-text"> Body VIN </div>
+        <input type="text" name="input-vin" id="input-vin" class="form-control" value="<%=carsUsers.getCar().getVin()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-brand">
-            <span>Select brand</span>
-        </label>
-        <input type="text" name="input-brand" id="input-brand" value="<%=carsUsers.getCar().getModel().getBrand().getName()%>"/>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Select brand</div>
+        <input type="text" name="input-brand" id="input-brand" class="form-control" value="<%=carsUsers.getCar().getModel().getBrand().getName()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-model">
-            <span>Select model</span>
-        </label>
-        <input type="text" name="input-model" id="input-model" value="<%=carsUsers.getCar().getModel().getName()%>" />
+    <div class="input-group-prepend">
+        <div class="input-group-text"> Select model </div>
+        <input type="text" name="input-model" id="input-model" class="form-control" value="<%=carsUsers.getCar().getModel().getName()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-year">
-            <span>Year</span>
-        </label>
-        <input type="text" name="input-year" id="input-year" value="<%=carsUsers.getCar().getYear()%>" />
+    <div class="input-group-prepend">
+        <div class="input-group-text">Year</div>
+        <input type="text" name="input-year" id="input-year" class="form-control" value="<%=carsUsers.getCar().getYear()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-engine">
-            <span>Engine</span>
-        </label>
-        <input type="text" name="input-engine" id="input-engine" value="<%=carsUsers.getCar().getEngine().getEngineType()%>"/>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Engine</div>
+        <input type="text" name="input-engine" id="input-engine" class="form-control" value="<%=carsUsers.getCar().getEngine().getEngineType()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-engine-capacity">
-            <span>Engine capacity</span>
-        </label>
-        <input type="text" name="input-engine-capacity" id="input-engine-capacity" value="<%=carsUsers.getCar().getEngine().getPower()%>" />
+    <div class="input-group-prepend">
+        <div class="input-group-text">Engine capacity</div>
+        <input type="text" name="input-engine-capacity" id="input-engine-capacity" class="form-control" value="<%=carsUsers.getCar().getEngine().getCapacity()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-engine-power">
-            <span>Engine Power</span>
-        </label>
-        <input type="text" name="input-engine-power" id="input-engine-power" value="<%=carsUsers.getCar().getEngine().getPower()%>"/>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Engine Power</div>
+        <input type="text" name="input-engine-power" id="input-engine-power" class="form-control" value="<%=carsUsers.getCar().getEngine().getPower()%>"/>
     </div>
 
-
-    <div class="input">
-        <label for="input-transmission">
-            <span>Transmission</span>
-        </label>
-        <input type="text" name="input-transmission" id="input-transmission" value="<%=carsUsers.getCar().getTransmission().getTransmissionType()%>"/>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Transmission</div>
+        <input type="text" name="input-transmission" id="input-transmission" class="form-control" value="<%=carsUsers.getCar().getTransmission().getTransmissionType()%>"/>
     </div>
 
-    <div class="input">
-        <label for="input-mileage">
-            <span>Mileage</span>
-        </label>
-        <input type="text" name="input-mileage" id="input-mileage" value="<%=carsUsers.getCar().getMileage()%>"/>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Mileage</div>
+        <input type="text" name="input-mileage" id="input-mileage" class="form-control" value="<%=carsUsers.getCar().getMileage()%>"/>
     </div>
 
-    <div class="input">
-        <label for="color-picker">
-            <span>Select color</span>
-        </label>
-        <input id="color-picker" name="color-picker" type="color" value="<%=carsUsers.getCar().getColor()%>" onchange="color()">
+    <div class="input-group-prepend">
+        <div class="input-group-text">Select color</div>
+        <input id="color-picker" name="color-picker" type="color" class="form-control" value="<%=carsUsers.getCar().getColor()%>" onchange="color()"/>
     </div>
 
-    <div class="input">
-        <label for="input-price">
-            <span>Price</span>
-        </label>
-        <input type="text" name="input-price" id="input-price" value="<%=carsUsers.getCar().getPrice()%>"/>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Price</div>
+        <input type="text" name="input-price" id="input-price" class="form-control" value="<%=carsUsers.getCar().getPrice()%>"/>
     </div>
 
-    <section>
-        <div class="switch">
-            <input type="checkbox" id="status-switch" name = "status-switch" onchange = handleCheckbox(this) class='checkbx' checked = "<%=carsUsers.getSoldStatus()%>" >
+    <div class="input-group-prepend">
+        <div class="switch" class="form-control">
+            <input type="checkbox" id="status-switch" name = "status-switch" onchange = handleCheckbox(this) class='checkbx' value = "<%=carsUsers.getSoldStatus()%>" >
             <span class="selection"></span>
             <label for="status-switch">SOLD</label>
             <label for="status-switch">Active</label>
         </div>
-    </section>
+    </div>
 
-
-    <div class="input">
-        <label for="input-description">
-            <span>Description</span>
-        </label>
-        <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here" ><%=carsUsers.getCar().getDescription()%></textarea>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Description</div>
+        <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here" class="form-control"><%=carsUsers.getCar().getDescription()%></textarea>
     </div>
 
     <button type="submit">Update add</button>
@@ -179,6 +154,11 @@
             success: window.location = "http://localhost:8080/drom/usercars.jsp"
         });
     }
+
+    $(document).ready(function () {
+        document.getElementById("status-switch").checked = <%=carsUsers.getSoldStatus()%>;
+    })
+
 </script>
 
 </html>

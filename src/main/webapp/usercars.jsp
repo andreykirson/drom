@@ -5,6 +5,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/switch.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/table.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/nav.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -69,7 +70,7 @@
                             "<td>" +
                             car.brand + " " + car.price+ " " + car.year + " " + car.model + " " + car.user.name + " " + car.user.phone +
                             "</td>" +
-                            "<td>" + "<img src="+ car.imagePath+">" +"</td>"+
+                            "<td>" + "<img width=200px height=200px alt=\"Add the photo\" src=<%=request.getContextPath()%>/download?name="+ car.imagePath  + ">" +"</td>"+
                             "<td>" + "<span>" + car.date  + "</span>" +"</td>"+
                             "<td>" +
                             "<section>" +

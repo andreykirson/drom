@@ -1,0 +1,38 @@
+table {
+    width: auto;
+    border-collapse: collapse;
+    margin:50px auto;
+}
+
+
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+thead {
+    background: #3498db;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 18px;
+}
+
+form {
+    width: 400px;
+    margin: 0 auto 0;
+}
+
+form input{
+    position: relative;
+}
+
+.btn-primary {
+    margin: 5px 5px 5px 5px;
+}

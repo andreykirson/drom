@@ -8,6 +8,7 @@
 
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/table.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/nav.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -52,92 +53,69 @@
     </p>
     <img id="previewImg" src="" alt="Add photo" width="150" height="150">
 
-    <div class="input">
-        <label for="input-vin">
-            <span>Body VIN</span>
-        </label>
-    <input type="text" name="input-vin" id="input-vin"  />
-    </div>
-
-    <div class="input">
-        <label for="input-brand">
-            <span>Select brand</span>
-        </label>
-        <input type="text" name="input-brand" id="input-brand" />
-    </div>
-
-    <div class="input">
-        <label for="input-model">
-            <span>Select model</span>
-        </label>
-        <input type="text" name="input-model" id="input-model"  />
-    </div>
-
-    <div class="input">
-        <label for="input-year">
-            <span>Year</span>
-        </label>
-    <input type="text" name="input-year" id="input-year"  />
-    </div>
-
-    <div class="input">
-        <label for="input-engine">
-            <span>Engine</span>
-        </label>
-        <input type="text" name="input-engine" id="input-engine" />
-    </div>
-
-    <div class="input">
-        <label for="input-engine-capacity">
-            <span>Engine capacity</span>
-        </label>
-        <input type="text" name="input-engine-capacity" id="input-engine-capacity"  />
-    </div>
-
-    <div class="input">
-        <label for="input-engine-power">
-            <span>Engine Power</span>
-        </label>
-        <input type="text" name="input-engine-power" id="input-engine-power"/>
+    <div class="input-group-prepend">
+        <div class="input-group-text"> Body VIN </div>
+        <input type="text" name="input-vin" id="input-vin" class="form-control"/>
     </div>
 
 
-    <div class="input">
-        <label for="input-transmission">
-            <span>Transmission</span>
-        </label>
-        <input type="text" name="input-transmission" id="input-transmission" />
+    <div class="input-group-prepend">
+        <div class="input-group-text">Select brand</div>
+        <input type="text" name="input-brand" id="input-brand" class="form-control"/>
     </div>
 
-    <div class="input">
-        <label for="input-mileage">
-            <span>Mileage</span>
-        </label>
-    <input type="text" name="input-mileage" id="input-mileage" />
+    <div class="input-group-prepend">
+        <div class="input-group-text"> Select model </div>
+        <input type="text" name="input-model" id="input-model" class="form-control" />
     </div>
 
-    <div class="input">
-        <label for="color-picker">
-            <span>Select color</span>
-        </label>
-        <input id="color-picker" name="color-picker" type="color" >
+    <div class="input-group-prepend">
+        <div class="input-group-text">Year</div>
+    <input type="text" name="input-year" id="input-year" class="form-control" />
     </div>
 
-    <div class="input">
-        <label for="input-price">
-            <span>Price</span>
-        </label>
-    <input type="text" name="input-price" id="input-price" />
+    <div class="input-group-prepend">
+        <div class="input-group-text">Engine</div>
+        <input type="text" name="input-engine" id="input-engine" class="form-control"/>
     </div>
 
-    <div class="input">
-        <label for="input-description">
-            <span>Description</span>
-        </label>
-        <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here" ></textarea>
+    <div class="input-group-prepend">
+        <div class="input-group-text">Engine capacity</div>
+        <input type="text" name="input-engine-capacity" id="input-engine-capacity" class="form-control"/>
     </div>
-    <button type="submit">Add car</button>
-    <button type="reset">Reset</button>
+
+    <div class="input-group-prepend">
+        <div class="input-group-text">Engine Power</div>
+        <input type="text" name="input-engine-power" id="input-engine-power" class="form-control"/>
+    </div>
+
+
+    <div class="input-group-prepend">
+        <div class="input-group-text">Transmission</div>
+        <input type="text" name="input-transmission" id="input-transmission" class="form-control"/>
+    </div>
+
+    <div class="input-group-prepend">
+        <div class="input-group-text">Mileage</div>
+    <input type="text" name="input-mileage" id="input-mileage" class="form-control"/>
+    </div>
+
+    <div class="input-group-prepend">
+        <div class="input-group-text">Select color</div>
+        <input id="color-picker" name="color-picker" type="color" class="form-control"/>
+    </div>
+
+    <div class="input-group-prepend">
+        <div class="input-group-text">Price</div>
+    <input type="text" name="input-price" id="input-price" class="form-control"/>
+    </div>
+
+    <div class="input-group-prepend">
+        <div class="input-group-text">Description</div>
+        <textarea id="input-description" name="car_desc" rows="4" cols="50" placeholder="Enter Text Here" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn-primary mb-2">Add car</button>
+    <button type="reset" class="btn-primary mb-2">Reset</button>
 
 </form>
 
