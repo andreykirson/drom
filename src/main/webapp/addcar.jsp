@@ -51,7 +51,7 @@
     <p>
         <input type="file" name = "add-photo" novalidate="novalidate" onchange="previewFile(this);" required>
     </p>
-    <img id="previewImg" src="" alt="Add photo" width="150" height="150">
+    <img id="previewImg" src="" alt="Add photo" width="350" height="200">
 
     <div class="input-group-prepend">
         <div class="input-group-text"> Body VIN </div>

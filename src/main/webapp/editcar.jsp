@@ -62,7 +62,7 @@
     </p>
 
 
-    <img id="previewImg" src=<%=request.getContextPath()%>/download?name=<%=carsUsers.getCar().getImagePath()%> alt="Add photo" width="150" height="150">
+    <img id="previewImg" src=<%=request.getContextPath()%>/download?name=<%=carsUsers.getCar().getImagePath()%> alt="Add photo" width=350px height=220px>
 
     <input type="text" hidden name="carUserId" id="carUserId" value="<%=carsUsers.getId()%>" />
 

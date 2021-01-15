@@ -20,7 +20,7 @@
             <% if (request.getSession().getAttribute("user") == null) { %> <li>
             <a href="<%=request.getContextPath()%>/login.jsp">Войти</a> </li>
             <% } else { %>
-            <li>  <a href="<%=request.getContextPath()%>/login.jsp"> <%=request.getSession().getAttribute("user")%> | Выйти</a>
+            <li>  <a href="<%=request.getContextPath()%>/login.jsp"> <%=request.getSession().getAttribute("user")%> | Logout</a>
                 <% } %></li>
         </ul>
      </div>
@@ -68,9 +68,9 @@
                         let row =
                             "<tr>" +
                             "<td>" +
-                            car.brand + " " + car.price+ " " + car.year + " " + car.model + " " + car.user.name + " " + car.user.phone +
+                            car.brand + " " + car.price+ "$," +" " + " Year: " + car.year + " " + car.model + "  " + ", Owner: "  + car.user.name + " " + ", contact phone: " + car.user.phone +
                             "</td>" +
-                            "<td>" + "<img width=200px height=200px alt=\"Add the photo\" src=<%=request.getContextPath()%>/download?name="+ car.imagePath  + ">" +"</td>"+
+                            "<td>" + "<img width=350px height=220px alt=\"Add the photo\" src=<%=request.getContextPath()%>/download?name="+ car.imagePath  + ">" +"</td>"+
                             "<td>" + "<span>" + car.date  + "</span>" +"</td>"+
                             "<td>" +
                             "<section>" +

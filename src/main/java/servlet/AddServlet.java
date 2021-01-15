@@ -97,7 +97,7 @@ public class AddServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        CarsUsers carsUsers = new CarsUsers(dt, false, user, car);
+        CarsUsers carsUsers = new CarsUsers(dt, true, user, car);
         store.addCarsUsers(carsUsers);
         LOG.debug("AddCarServlet's doGET() is finished");
         resp.sendRedirect(req.getContextPath() + "/index.jsp");

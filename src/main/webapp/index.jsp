@@ -148,7 +148,7 @@ function parseData(data) {
             "<a class = 'link' href='<%=request.getContextPath()%>/car.jsp?id="+ car.cuid + "' + >" +
             car.brand + " "+ car.model + " " + car.year + " year "  + car.price+ " $ " +
             "</td>" +
-            "<td>" + "<img width=200px height=200px alt=\"Add the photo\" src=<%=request.getContextPath()%>/download?name="+ car.imagePath  + ">"  +"</td>" +
+            "<td>" + "<img width=350px height=220px alt=\"Add the photo\" src=<%=request.getContextPath()%>/download?name="+ car.imagePath  + ">"  +"</td>" +
             "<td>" + "<span>" + car.date  + "</span>" +"</td>"+
             "<td>" + "<span id='st-"+car.cuid+"'>" + car.status + "</span>" + "</td>"+
             "</tr>";
