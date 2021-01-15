@@ -17,7 +17,7 @@ This project represents the java web technology.
 - Slf4j for logging.
 - PostgreSQL for database.
 - Jackson for JSON building.
-- JSP, JSTL, scriptlet, JavaScript, CSS, HTML for the front-end.
+- JSP, JSTL, scriptlet, JavaScript, JQuery, CSS, HTML for the front-end.
 - Tomcat as a servlet container.
 - MVC as design pattern.
 - commons-fileupload for uploading images.
